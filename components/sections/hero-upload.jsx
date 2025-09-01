@@ -7,14 +7,10 @@ import { Upload, FileImage, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-interface HeroUploadProps {
-  className?: string
-}
-
-export function HeroUpload({ className }: HeroUploadProps) {
+export function HeroUpload({ className }) {
   const router = useRouter()
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
+  const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length > 0) {
       // Store files in sessionStorage temporarily and navigate to demo
       sessionStorage.setItem('pendingFiles', JSON.stringify(

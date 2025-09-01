@@ -76,14 +76,14 @@ export default function FAQPage() {
         <div className="py-20">
           {/* Header */}
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-brand/10 text-brand border-brand/20">
+            <Badge variant="secondary" className="mb-4 bg-brand/10 text-brand border-brand/20">
               FAQ
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-brand-ink dark:text-white mb-4">
               Frequently Asked Questions
             </h1>
             <p className="text-xl text-brand-ink-soft dark:text-gray-400 max-w-2xl mx-auto">
-              Everything you need to know about our table extraction tool. Can't find what you're looking for? Contact us.
+              Everything you need to know about our table extraction tool. Can&apos;t find what you&apos;re looking for? Contact us.
             </p>
           </div>
 
@@ -166,7 +166,7 @@ export default function FAQPage() {
                 Still have questions?
               </h2>
               <p className="text-brand-ink-soft dark:text-gray-400 mb-6 max-w-2xl mx-auto">
-                We're here to help! Reach out to our support team for personalized assistance with your table extraction needs.
+                We&apos;re here to help! Reach out to our support team for personalized assistance with your table extraction needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 

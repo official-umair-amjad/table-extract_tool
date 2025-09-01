@@ -5,19 +5,13 @@ import { Download, Copy, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { TableRows } from "@/lib/types"
 import { downloadCSV, downloadXLSX, copyToClipboard } from "@/lib/export"
 import { toast } from "sonner"
 
-interface TablePreviewProps {
-  tables: TableRows[]
-  filename: string
-}
+export function TablePreview({ tables, filename }) {
+  const [copiedTable, setCopiedTable] = useState(null)
 
-export function TablePreview({ tables, filename }: TablePreviewProps) {
-  const [copiedTable, setCopiedTable] = useState<number | null>(null)
-
-  const handleCopy = async (tableIndex: number) => {
+  const handleCopy = async (tableIndex) => {
     try {
       await copyToClipboard(tables[tableIndex])
       setCopiedTable(tableIndex)
@@ -28,7 +22,7 @@ export function TablePreview({ tables, filename }: TablePreviewProps) {
     }
   }
 
-  const handleDownloadCSV = (tableIndex: number) => {
+  const handleDownloadCSV = (tableIndex) => {
     const baseFilename = filename.replace(/\.[^/.]+$/, "")
     const csvFilename = tables.length > 1 
       ? `${baseFilename}_table_${tableIndex + 1}.csv`
@@ -37,7 +31,7 @@ export function TablePreview({ tables, filename }: TablePreviewProps) {
     toast.success("CSV downloaded!")
   }
 
-  const handleDownloadXLSX = (tableIndex: number) => {
+  const handleDownloadXLSX = (tableIndex) => {
     const baseFilename = filename.replace(/\.[^/.]+$/, "")
     const xlsxFilename = tables.length > 1
       ? `${baseFilename}_table_${tableIndex + 1}.xlsx`
@@ -46,7 +40,7 @@ export function TablePreview({ tables, filename }: TablePreviewProps) {
     toast.success("Excel file downloaded!")
   }
 
-  const renderTable = (rows: TableRows, tableIndex: number) => {
+  const renderTable = (rows, tableIndex) => {
     if (!rows || rows.length === 0) {
       return (
         <div className="text-center py-8 text-gray-500">

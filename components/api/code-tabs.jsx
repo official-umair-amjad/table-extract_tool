@@ -6,21 +6,10 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
 
-interface CodeExample {
-  language: string
-  label: string
-  code: string
-}
+export function CodeTabs({ examples, title }) {
+  const [copiedTab, setCopiedTab] = useState(null)
 
-interface CodeTabsProps {
-  examples: CodeExample[]
-  title?: string
-}
-
-export function CodeTabs({ examples, title }: CodeTabsProps) {
-  const [copiedTab, setCopiedTab] = useState<string | null>(null)
-
-  const handleCopy = async (code: string, language: string) => {
+  const handleCopy = async (code, language) => {
     try {
       await navigator.clipboard.writeText(code)
       setCopiedTab(language)

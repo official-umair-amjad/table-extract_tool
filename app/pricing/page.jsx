@@ -91,7 +91,7 @@ export default function PricingPage() {
               >
                 {plan.popular && (
                   <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-brand text-white px-3 py-1 rounded-b-lg">
+                    <Badge variant="secondary" className="bg-brand text-white px-3 py-1 rounded-b-lg">
                       Most Popular
                     </Badge>
                   </div>
@@ -156,7 +156,7 @@ export default function PricingPage() {
                   When will paid plans be available?
                 </h3>
                 <p className="text-brand-ink-soft dark:text-gray-400">
-                  We're working on authentication and billing integration. Paid plans will be available soon with enhanced features and higher limits.
+                  We&apos;re working on authentication and billing integration. Paid plans will be available soon with enhanced features and higher limits.
                 </p>
               </div>
 
@@ -165,7 +165,7 @@ export default function PricingPage() {
                   What happens to my data?
                 </h3>
                 <p className="text-brand-ink-soft dark:text-gray-400">
-                  Currently, all processing happens locally and files are not stored. In future paid plans, you'll have options for cloud storage and processing.
+                  Currently, all processing happens locally and files are not stored. In future paid plans, you&apos;ll have options for cloud storage and processing.
                 </p>
               </div>
 
@@ -174,7 +174,7 @@ export default function PricingPage() {
                   Can I upgrade or downgrade plans?
                 </h3>
                 <p className="text-brand-ink-soft dark:text-gray-400">
-                  Yes, once billing is available, you'll be able to change plans at any time. Changes will be prorated automatically.
+                  Yes, once billing is available, you&apos;ll be able to change plans at any time. Changes will be prorated automatically.
                 </p>
               </div>
             </div>
