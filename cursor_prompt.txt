@@ -1,0 +1,107 @@
+
+You are Cursor, acting as a senior full‑stack engineer and UX lead. Read **reference.md** in the project root and build a complete, production‑ready marketing + demo app on top of a fresh Next.js (App Router) project that was already created with `npx create-next-app`. Follow these instructions precisely.
+
+## Objective
+Ship a tool website that **looks and explains itself like remove.bg** while demonstrating the **ExtractTable‑style capability** (extracting tables from images/PDFs). Use sample assets and a mocked processing API so the site works end‑to‑end without real OCR until the user swaps in their engine.
+
+## Guardrails
+- Use **TypeScript**, **App Router**, **Server Components** where sensible.
+- Add **Tailwind CSS** and **shadcn/ui** for styling/components; use **lucide-react** for icons, **framer-motion** for tasteful motion.
+- No backend database or auth in v1. Everything must run locally or in a serverless Route Handler with **mocked processing**.
+- Keep the code clean, typed, accessible (WAI‑ARIA), and responsive.
+- **Read and honor all specs in reference.md.** If any ambiguity arises, pick the simplest option consistent with the spec.
+
+## Packages to add
+Run these and configure as needed:
+```
+npm i -D tailwindcss postcss autoprefixer @types/node @types/react @types/react-dom
+npx tailwindcss init -p
+npm i class-variance-authority clsx tailwind-merge
+npm i next-themes lucide-react framer-motion
+npm i react-dropzone zustand papaparse xlsx
+npm i -D @types/react-dropzone
+```
+Then set up **shadcn/ui**:
+```
+npx shadcn@latest init
+npx shadcn@latest add button card input textarea badge accordion tabs dropdown-menu progress tooltip dialog toast avatar separator skeleton navigation-menu
+```
+(If shadcn requires a `components.json`, generate it with the defaults.)
+
+## Project structure (create files/folders as needed)
+- `app/` (App Router)
+  - `layout.tsx`, `globals.css` (Tailwind base), theme provider
+  - `(marketing)/` group with pages: `page.tsx` (Home), `how-it-works/page.tsx`, `pricing/page.tsx`, `api/page.tsx`, `faq/page.tsx`
+  - `demo/page.tsx` (interactive demo separate from home hero)
+  - `legal/` with `privacy/page.tsx`, `terms/page.tsx`
+  - `api/process/route.ts` (mocked job create + process)
+  - `api/result/route.ts` (return mock results by jobId)
+- `components/` shared UI (see reference.md)
+- `lib/` utilities (csv/xlsx export, formatters, mock sleep, types)
+- `public/samples/` sample images (`invoice.jpg`, `receipt.jpg`) + a short mp4/webm loop showing “from image to table”
+- `content/` constants and marketing copy (strings in reference.md)
+
+## Implementation checklist
+1) **Tailwind + fonts**
+   - Configure Tailwind with `container` plugin and custom color tokens from reference.md.
+   - Use `Inter` (via `next/font/google`), set CSS variables for accent colors.
+2) **Global layout**
+   - Sticky transparent Header that turns solid on scroll.
+   - `NavigationMenu` with: Home, How it works, Pricing, API, Demo, FAQ  + a prominent CTA Button “Try the demo”.
+   - Polished Footer with link columns (Company, Tools & API, Support, Legal) and social icons.
+3) **Home page (remove.bg style)**
+   - Hero: big headline, subhead, primary CTA (Upload or Try sample), secondary “See how it works” anchor.
+   - Drag‑and‑drop upload card centered in hero (react-dropzone). Accept images (jpg/png) and PDFs.
+   - Below hero: **Result strip** that shows 3 preset sample “before → after table previews” cycling with framer-motion.
+   - “How it works” 3‑step section (Upload → Detect tables → Export CSV/Excel).
+   - “Use cases” grid (Receipts, Invoices, Lab reports, Bank statements, Price lists).
+   - “Why this tool” bullet list (speed, accuracy claim left blank, privacy note).
+   - Testimonials (static, see reference.md).
+   - FAQ accordion (items from reference.md).
+4) **Demo page**
+   - Larger upload surface + queue of uploaded items.
+   - For each file show a `Card` with thumbnail / filename / size / status bar.
+   - On drop, POST to `/api/process` with file(s). The API **mocks** processing: waits 1.5–2.0s and returns a canned extraction:
+     - for images: a 3x5 sample table
+     - for PDFs: one table per page (generate 2 for the sample)
+   - Show a **TablePreview** (virtualized if necessary) and allow **Download CSV** and **Download XLSX** using papaparse/xlsx utilities.
+   - Error states and retry.
+5) **API page**
+   - Landing that mirrors remove.bg’s “1 API call” tone but for table extraction.
+   - Show language tabs with copy‑paste examples (curl, Node.js fetch, Python `requests`) hitting `/api/process` locally.
+   - Note clearly that it’s a mock endpoint and where to plug a real engine (see reference.md “Integration points”).
+6) **Pricing page**
+   - 3 cards (Free, Pro, Team) with feature checklists and “No auth in v1 — button disabled” note/tooltips.
+7) **How it works & FAQ**
+   - Content-only pages using copy from reference.md.
+8) **Route Handlers**
+   - `/api/process` accepts multipart/form-data. For each file returns:
+     ```ts
+     type MockJob = { jobId: string; filename: string; mimetype: string; status: 'completed'; rows: string[][]; };
+     ```
+     Use deterministic but varied mock rows. Store nothing on disk; keep in-memory map in a module (`lib/mock-db.ts`) for the process lifetime.
+   - `/api/result` returns the same record by `jobId`. Not strictly necessary but keep parity for future async jobs.
+9) **State + store**
+   - Use `zustand` to store the current batch, statuses, and results.
+10) **Export utils**
+   - `toCsv(rows)`, `toXlsx(rows, sheetName)` in `lib/export.ts` and wire buttons.
+11) **Accessibility & perf**
+   - Provide labels for file inputs, keyboard focus styles, `aria-live` for status updates.
+   - Lazy‑load heavy client components with `dynamic()`; optimize images; set correct `Content-Disposition` for downloads.
+12) **SEO**
+   - Use Next Metadata for each route; OG image placeholders under `/public/og/`.
+13) **Polish**
+   - Skeleton loaders, subtle motion, empty states, and toasts.
+
+## Acceptance criteria
+- The site boots with `npm run dev` and all pages render with the specified nav and footer.
+- Drag‑and‑drop works; sample assets appear; mock API returns rows; CSV/XLSX download produces files.
+- The API page code samples work locally.
+- Lighthouse score ≥ 90 for Performance/Best Practices/SEO on Home.
+- No TypeScript errors; ESLint passes with Next default rules.
+
+## Once done
+- Print a short “Next steps” list from reference.md (real OCR, auth, pricing hooks).
+- Keep changes small and atomic commits (if in a git repo).
+- Do not invent extra pages; follow the spec verbatim.
+(Build date: 2025-08-31)
