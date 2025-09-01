@@ -26,7 +26,7 @@ export function TestimonialsSection() {
           {content.testimonials.map((testimonial, index) => (
             <div key={index} className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border-2 border-brand dark:border-slate-700">
               <blockquote className="text-lg text-brand-ink dark:text-white mb-4">
-                "{testimonial.quote}"
+                &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
               <cite className="text-brand-ink-soft dark:text-gray-400 font-medium not-italic">
                 — {testimonial.author}

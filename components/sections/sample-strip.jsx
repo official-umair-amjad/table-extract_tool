@@ -97,7 +97,7 @@ export function SampleStrip() {
     <section className="py-8 bg-white dark:bg-slate-800">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
-          <Badge className="mb-4 bg-brand/10 text-brand border-brand/20">
+          <Badge variant="secondary" className="mb-4 bg-brand/10 text-brand border-brand/20">
             See It In Action
           </Badge>
           <h2 className="text-3xl font-bold text-brand dark:text-white mb-4">
@@ -194,7 +194,7 @@ export function SampleStrip() {
                     <span className="text-sm font-medium text-green-800 dark:text-green-200">
                       After: Structured Data
                     </span>
-                    <Badge className="bg-green-100 text-green-700 dark:bg-green-800 dark:text-green-200 text-xs">
+                    <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-800 dark:text-green-200 text-xs">
                       CSV/XLSX Ready
                     </Badge>
                   </div>

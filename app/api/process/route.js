@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { generateId, sleep } from '@/lib/utils'
+import { generateRandomId, sleepTime } from '@/lib/utils'
 import { generateMockTable, storeJob } from '@/lib/mock-db'
 
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   try {
     const formData = await request.formData()
-    const file = formData.get('file') as File
+    const file = formData.get('file')
 
     if (!file) {
       return NextResponse.json(
@@ -32,10 +32,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const jobId = generateId()
+    const jobId = generateRandomId()
 
     // Simulate processing time
-    await sleep(1500 + Math.random() * 500) // 1.5-2.0 seconds
+    await sleepTime(1500 + Math.random() * 500) // 1.5-2.0 seconds
 
     // Generate mock table data based on file type
     const rows = generateMockTable(file.type)
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       jobId,
       filename: file.name,
       mimetype: file.type,
-      status: 'completed' as const,
+      status: 'completed',
       rows,
     }
 

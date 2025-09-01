@@ -60,7 +60,7 @@ export default function HowItWorksPage() {
         <div className="py-20 px-10">
           {/* Header */}
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-brand/10 text-brand border-brand/20">
+            <Badge variant="secondary" className="mb-4 bg-brand/10 text-brand border-brand/20">
               How It Works
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-brand-ink dark:text-white mb-4">

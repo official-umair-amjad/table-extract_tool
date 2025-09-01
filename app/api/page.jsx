@@ -95,7 +95,7 @@ export default function APIPage() {
         <div className="py-20 px-10">
           {/* Header */}
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-brand/10 text-brand border-brand/20">
+            <Badge variant="secondary" className="mb-4 bg-brand/10 text-brand border-brand/20">
               API Documentation
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-brand-ink dark:text-white mb-4">
@@ -138,8 +138,8 @@ export default function APIPage() {
           {/* API Endpoints */}
           <div className="space-y-12">
             {/* Process Endpoint */}
-            <Card>
-              <CardHeader>
+            <Card className="">
+              <CardHeader className=''>
                 <CardTitle className="flex items-center space-x-2">
                   <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
                     POST
@@ -189,8 +189,8 @@ export default function APIPage() {
             </Card>
 
             {/* Result Endpoint */}
-            <Card>
-              <CardHeader>
+            <Card className="">
+              <CardHeader className=''>
                 <CardTitle className="flex items-center space-x-2">
                   <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
                     GET
@@ -235,8 +235,8 @@ export default function APIPage() {
           </div>
 
           {/* Error Handling */}
-          <Card className="mt-12">
-            <CardHeader>
+          {/* <Card className="mt-12">
+            <CardHeader className=''>
               <CardTitle>Error Handling</CardTitle>
             </CardHeader>
             <CardContent>
@@ -273,7 +273,7 @@ export default function APIPage() {
                 </div>
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
       </Container>
     </div>

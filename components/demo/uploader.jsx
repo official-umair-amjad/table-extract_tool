@@ -8,7 +8,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { cn } from "@/lib/utils"
 import { useUploadStore } from "@/lib/store"
-import { UploadItem } from "@/lib/types"
 import { TablePreview } from "@/components/demo/table-preview"
 import { toast } from "sonner"
 
@@ -30,14 +29,14 @@ export function Uploader() {
     }
   }, [])
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
+  const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles.length > 0) {
       addFiles(acceptedFiles)
       
       // Process each file
       acceptedFiles.forEach(async (file) => {
         const item = items.find(i => i.file === file) || 
-          { id: Math.random().toString(36).substr(2, 9), file, status: 'queued' as const }
+          { id: Math.random().toString(36).substr(2, 9), file, status: 'queued' }
         
         updateItem(item.id, { status: 'processing' })
         
@@ -78,7 +77,7 @@ export function Uploader() {
     maxSize: 15 * 1024 * 1024, // 15MB
   })
 
-  const formatFileSize = (bytes: number) => {
+  const formatFileSize = (bytes) => {
     if (bytes === 0) return '0 Bytes'
     const k = 1024
     const sizes = ['Bytes', 'KB', 'MB', 'GB']
@@ -86,7 +85,7 @@ export function Uploader() {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
   }
 
-  const getStatusColor = (status: UploadItem['status']) => {
+  const getStatusColor = (status) => {
     switch (status) {
       case 'completed': return 'text-green-600'
       case 'error': return 'text-red-600'
@@ -95,7 +94,7 @@ export function Uploader() {
     }
   }
 
-  const getStatusText = (status: UploadItem['status']) => {
+  const getStatusText = (status) => {
     switch (status) {
       case 'completed': return 'Completed'
       case 'error': return 'Error'

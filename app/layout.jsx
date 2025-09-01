@@ -14,11 +14,7 @@ export const metadata = {
   description: "Skip manual copy-paste. Drop your file and download clean rows as CSV or Excel. No templates required.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
