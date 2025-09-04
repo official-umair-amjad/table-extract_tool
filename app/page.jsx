@@ -14,29 +14,30 @@ export default function Home() {
       {/* Hero Section */}
       <section
         className="relative py-10 lg:py-25 
-  bg-gradient-to-b from-brand-accent/60 to-white 
-  dark:from-slate-900 dark:to-slate-800
-  overflow-hidden"
+  bg-gradient-to-b from-brand-accent/60 to-transparent
+  overflow-hidden transition-colors duration-300"
       >
         {/* Background table grid */}
         <div
-          className="absolute inset-0 opacity-70 dark:opacity-20"
-          style={{
-            backgroundImage: `
-        linear-gradient(to right, rgba(0,0,0,0.15) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px)
-      `,
-            backgroundSize: "100px 40px",
-          }}
-        />
+  className="
+    absolute inset-0 opacity-[0.15]
+    bg-[linear-gradient(to_right,#64748b_1px,transparent_1px),linear-gradient(to_bottom,#64748b_1px,transparent_1px)]
+    bg-[length:100px_40px]
+    transition-opacity duration-300
+  "
+/>
+
+        {/* Hero content */}
+
+
 
         <Container className="relative">
-          <div className="text-center space-y-2 lg:flex px-10">
-            <div className="p-10 lg:w-2/3">
-              <h1 className="text-xl md:text-5xl text-shadow-sm font-bold text-brand dark:text-white leading-tight">
+          <div className="text-center space-y-2 lg:flex md:px-10">
+            <div className="md:p-10 p-5 lg:w-2/3">
+              <h1 className="text-2xl md:text-5xl text-shadow-sm font-bold text-brand dark:text-foreground leading-tight transition-colors duration-300">
                 {content.hero.h1}
               </h1>
-              <p className="mt-4 text-xl text-brand-ink-soft dark:text-gray-400 max-w-3xl mx-auto">
+              <p className="mt-4 text-lg text-brand-ink-soft dark:text-muted-foreground max-w-3xl mx-auto transition-colors duration-300">
                 {content.hero.subhead}
               </p>
             </div>

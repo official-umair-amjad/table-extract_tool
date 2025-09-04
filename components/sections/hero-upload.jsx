@@ -38,11 +38,10 @@ export function HeroUpload({ className }) {
       <div
         {...getRootProps()}
         className={cn(
-          "relative border-2 border-brand shadow-xl bg-white rounded-2xl p-12 text-center cursor-pointer transition-all duration-200",
+          "relative border-2 border-dashed border-brand/60 bg-card rounded-2xl p-12 text-center cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl",
           isDragActive
-            ? "border-brand scale-105"
-            : "border-brand hover:border-brand hover:bg-brand-accent/25 hover:scale-105",
-          "dark:border-slate-600 dark:hover:border-brand"
+            ? "bg-primary/5 scale-105"
+            : "hover:border-brand/60  hover:bg-brand-accent/10 hover:scale-[1.05]"
         )}
       >
         <input {...getInputProps()} />
@@ -50,23 +49,23 @@ export function HeroUpload({ className }) {
         <div className="flex flex-col items-center space-y-5">
           <div className="relative">
             <div className={cn(
-              "w-16 h-16 rounded-full flex items-center justify-center transition-colors",
-              isDragActive ? "bg-brand text-white" : "bg-brand/70 text-white dark:bg-slate-800 dark:text-slate-400"
+              "w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300",
+              isDragActive ? "bg-brand text-primary-foreground shadow-lg" : "bg-brand/80 text-primary-foreground shadow-md hover:bg-primary"
             )}>
               <Upload className="w-8 h-8" />
             </div>
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-brand-ink dark:text-white">
+            <h3 className="text-xl font-semibold text-card-foreground">
               {isDragActive ? "Drop your files here" : "Drop files or click to upload"}
             </h3>
-            <p className="text-brand-ink-soft dark:text-gray-400">
+            <p className="text-muted-foreground">
               JPG, PNG, or PDF up to 15MB each
             </p>
           </div>
 
-          <div className="flex items-center space-x-4 text-sm text-brand dark:text-gray-400">
+          <div className="flex items-center space-x-4 text-sm text-muted-foreground">
             <div className="flex items-center space-x-1">
               <FileImage className="w-4 h-4" />
               <span>Images</span>
