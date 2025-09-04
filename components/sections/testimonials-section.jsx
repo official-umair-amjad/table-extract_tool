@@ -14,21 +14,21 @@ export function TestimonialsSection() {
     <section className="py-20">
       <Container>
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-brand dark:text-white mb-4">
+          <h2 className="text-3xl font-bold text-foreground mb-4">
             Trusted by teams everywhere
           </h2>
-          <p className="text-lg text-brand-ink-soft dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             See what our users are saying about our table extraction tool
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {content.testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border-2 border-brand dark:border-slate-700">
-              <blockquote className="text-lg text-brand-ink dark:text-white mb-4">
+            <div key={index} className="bg-card rounded-2xl p-8 shadow-md border border-border hover:shadow-lg transition-all duration-300">
+              <blockquote className="text-lg text-card-foreground mb-4">
                 &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
-              <cite className="text-brand-ink-soft dark:text-gray-400 font-medium not-italic">
+              <cite className="text-muted-foreground font-medium not-italic">
                 — {testimonial.author}
               </cite>
             </div>

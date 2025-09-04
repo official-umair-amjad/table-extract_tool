@@ -42,6 +42,9 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-surface: var(--surface);
+  --color-surface-variant: var(--surface-variant);
+  --color-surface-hover: var(--surface-hover);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -50,31 +53,47 @@
 
 :root {
   --radius: 0.625rem;
-  --background: #ffffff;
-  --foreground: #0B1221;
-  --card: #ffffff;
-  --card-foreground: #0B1221;
-  --popover: #ffffff;
-  --popover-foreground: #0B1221;
-  --primary: #5B8DEF;
-  --primary-foreground: #ffffff;
-  --secondary: #f8fafc;
-  --secondary-foreground: #0B1221;
-  --muted: #f1f5f9;
-  --muted-foreground: #6B7280;
-  --accent: #10B981;
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #5B8DEF;
   
-  /* Custom brand colors */
-  --brand: #10B981;
-  --brand-ink: #010101;
-  --brand-ink-soft: #6B7280;
-  --brand-accent: #36cfea;
-  --surface-dark: #0f172a;
+  /* Base colors - Light Mode */
+  --background: #fafbfc;
+  --foreground: #1a202c;
+  --card: #ffffff;
+  --card-foreground: #1a202c;
+  --popover: #ffffff;
+  --popover-foreground: #1a202c;
+  
+  /* Primary - Modern blue */
+  --primary: #69d6b7;
+  --primary-foreground: #ffffff;
+  
+  /* Secondary - Soft grays */
+  --secondary: #f1f5f9;
+  --secondary-foreground: #475569;
+  
+  /* Muted - Subtle backgrounds */
+  --muted: #f8fafc;
+  --muted-foreground: #64748b;
+  
+  /* Accent - Teal */
+  --accent: #0d9488;
+  --accent-foreground: #ffffff;
+  
+  /* System colors */
+  --destructive: #dc2626;
+  --border: #e2e8f0;
+  --input: #f1f5f9;
+  --ring: #4f46e5;
+  
+  /* Brand colors */
+  --brand: #0d9488;
+  --brand-ink: #1a202c;
+  --brand-ink-soft: #64748b;
+  --brand-accent: #06b6d4;
+  
+  /* Surface variants */
+  --surface: #ffffff;
+  --surface-variant: #f8fafc;
+  --surface-hover: #f1f5f9;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -91,44 +110,74 @@
 }
 
 .dark {
+  /* Base colors - Dark Mode */
   --background: #0f172a;
   --foreground: #f8fafc;
   --card: #1e293b;
   --card-foreground: #f8fafc;
   --popover: #1e293b;
   --popover-foreground: #f8fafc;
-  --primary: #5B8DEF;
+  
+  /* Primary - Bright blue for dark mode */
+  --primary: #3dd990;
   --primary-foreground: #ffffff;
+  
+  /* Secondary - Dark grays */
   --secondary: #334155;
-  --secondary-foreground: #f8fafc;
-  --muted: #334155;
+  --secondary-foreground: #cbd5e1;
+  
+  /* Muted - Dark backgrounds */
+  --muted: #1e293b;
   --muted-foreground: #94a3b8;
-  --accent: #10B981;
+  
+  /* Accent - Cyan */
+  --accent: #06b6d4;
   --accent-foreground: #ffffff;
+  
+  /* System colors */
   --destructive: #ef4444;
   --border: #334155;
-  --input: #334155;
-  --ring: #5B8DEF;
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --input: #1e293b;
+  --ring: #6366f1;
+  
+  /* Brand colors for dark mode */
+  --brand: #0cb1ce;
+  --brand-ink: #f8fafc;
+  --brand-ink-soft: #94a3b8;
+  --brand-accent: #0ea5e9;
+  
+  /* Surface variants */
+  --surface: #1e293b;
+  --surface-variant: #334155;
+  --surface-hover: #475569;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
   body {
     @apply bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Enhanced animations and interactions */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 5px var(--primary); }
+    50% { box-shadow: 0 0 20px var(--primary), 0 0 30px var(--primary); }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s infinite;
   }
 }

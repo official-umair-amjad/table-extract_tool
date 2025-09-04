@@ -6,13 +6,13 @@ import { content } from "@/content/copy"
 
 export function FAQSection() {
   return (
-    <section className="py-20 bg-slate-50 dark:bg-slate-900">
+    <section className="py-20 bg-surface-variant">
       <Container>
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-brand-ink dark:text-white mb-4">
+          <h2 className="text-3xl font-bold text-foreground mb-4">
             Frequently asked questions
           </h2>
-          <p className="text-lg text-brand-ink-soft dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Quick answers to common questions about our table extraction tool
           </p>
         </div>
@@ -21,10 +21,10 @@ export function FAQSection() {
           <Accordion type="single" collapsible className="w-full">
             {content.faqTeaser.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left text-brand-ink dark:text-white">
+                <AccordionTrigger className="text-left text-foreground">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-brand-ink-soft dark:text-gray-400">
+                <AccordionContent className="text-muted-foreground">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

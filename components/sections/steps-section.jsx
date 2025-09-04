@@ -13,10 +13,10 @@ export function StepsSection() {
     <section className="py-20">
       <Container>
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-brand dark:text-white mb-4">
+          <h2 className="text-3xl font-bold text-foreground mb-4">
             How it works
           </h2>
-          <p className="text-lg text-brand-ink-soft dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Three simple steps to extract tables from any image or PDF
           </p>
         </div>
